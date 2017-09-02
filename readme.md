@@ -1,13 +1,34 @@
-```bash
-Usage: commenter.py [options] <path>
+# fcomments
+
+*manage comments from your command line*
+
+## installation
+
+fcomments is on [pypi](https://pypi.org/project/fcomments/)
+
+```
+$ pip install fcomments
+```
+
+## usage
+
+Default behavior is to switch the line. It means that if a matched line is commented, the comment will be removed, and if the line is not commented the comment will be added.
+
+Specifying -c flag ensures that matched lines will be commented out after the command. The flag -u works analogically with respect to uncommenting lines.
+
+
+
+### --help
+```
+Usage: fcomments [options] <path>
 
 Examples:
-       commenter.py -h                  --->  see help
-       commenter.py -cl1,2 path/to/file  --->  comment out lines 1 and 2
-       commenter.py -ul3-6 path/to/file  --->  uncomment lines 3 to 6
-       commenter.py -ac path/to/file     --->  comment out all file
+       fcomments -h                  --->  see help
+       fcomments -cl1,2 path/to/file  --->  comment out lines 1 and 2
+       fcomments -ul3-6 path/to/file  --->  uncomment lines 3 to 6 (inclusive)
+       fcomments -ac path/to/file     --->  comment out all file
 
-       commenter.py --start-pattern='\s+operations\s?=\s?\[' --end-pattern='\s+\]' path/to/file
+       fcomments --start-pattern='\s+operations\s?=\s?\[' --end-pattern='\s+\]' path/to/file
          --->  comment out everything inside the `operations` list:
 
          1| class Migration(...):
