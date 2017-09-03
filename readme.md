@@ -1,12 +1,15 @@
-[![Build Status](https://travis-ci.org/tadeoos/fcomments.svg?branch=master)](https://travis-ci.org/tadeoos/fcomments)
-![coverage](coverage.svg)
 [![PyPI version](https://badge.fury.io/py/fcomments.svg)](https://badge.fury.io/py/fcomments)
-
+[![PyPI](https://img.shields.io/pypi/pyversions/fcomments.svg)]()
+[![PyPI](https://img.shields.io/pypi/l/Django.svg)]()
+![coverage](coverage.svg)
+[![Build Status](https://travis-ci.org/tadeoos/fcomments.svg?branch=master)](https://travis-ci.org/tadeoos/fcomments)
 # fcomments
 
 *manage comments from your command line*
 
 ## installation
+
+supports Python 3.5+
 
 fcomments is on [pypi](https://pypi.org/project/fcomments/)
 

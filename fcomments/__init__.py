@@ -8,6 +8,7 @@ __version__ = '0.1.1'
 
 log = logging.getLogger(__name__)
 
+
 def create_parser():
     def line_callback(option, opt, value, parser):
         if '-' in value:
@@ -68,9 +69,9 @@ If you don't specify an --output, the original file (<path>) will be overwritten
                       help="specify a string to use as comment [default: '#']")
     return parser
 
+
 def main(reverse=False):
     """Script for commenting in/out lines in file."""
-
     parser = create_parser()
     options, args = parser.parse_args()
     print(options.__dict__)
