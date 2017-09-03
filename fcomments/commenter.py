@@ -44,16 +44,17 @@ class Commenter:
     def _update_reverse(self):
         if not (self.comment or self.uncomment):
             self.reverse = True
+
     # @staticmethod
-    def _check(self, **kwargs):
-        if self.comment and self.uncomment:
-            raise RuntimeError('both -cu')
-        if not (self.in_pattern or
-                self.out_pattern or
-                self.lines or
-                self.all_lines):
-            print('no pattern specified')
-            # raise RuntimeError('no pattern specified')
+    # def _check(self, **kwargs):
+        # if self.comment and self.uncomment:
+        #     raise RuntimeError('both -cu')
+        # if not (self.in_pattern or
+        #         self.out_pattern or
+        #         self.lines or
+        #         self.all_lines):
+        #     print('no pattern specified')
+        #     raise RuntimeError('no pattern specified')
 
     @staticmethod
     def _get_updates():
@@ -93,8 +94,8 @@ class Commenter:
         if update:
             pass
 
-    def pattern_based(self, in_pattern=None, out_pattern=None,original=None,
-                   comment=False, reverse=True, update=False, **kwargs):
+    def pattern_based(self, in_pattern=None, out_pattern=None, original=None,
+                      comment=False, reverse=True, update=False, **kwargs):
         start_pattern = False
         end_pattern = False
         res_file = []

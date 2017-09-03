@@ -1,9 +1,9 @@
 from unittest import TestCase
 import os
-import subprocess
+# import subprocess
 
 from fcomments.commenter import Commenter
-from fcomments import main, create_parser
+from fcomments import create_parser
 
 dir_path = os.path.dirname(os.path.abspath(__file__))
 TEST_FILE_PATH = os.path.join(dir_path, 'ex_file.py')

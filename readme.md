@@ -57,8 +57,8 @@ Examples:
        __main__.py -h                  --->  see help
        __main__.py -cl1,2 path/to/file  --->  comment out lines 1 and 2
        __main__.py -ul3-6 path/to/file  --->  uncomment lines 3 to 6 (inclusive)
-       __main__.py -ac path/to/file     --->  comment out all file
-       __main__.py -au path/to/file     --->  uncomment out all file
+       __main__.py -ac path/to/file     --->  comment out all lines
+       __main__.py -au path/to/file     --->  uncomment all lines
 
        __main__.py --start-pattern='\s+operations\s?=\s?\[' --end-pattern='\s+\]' path/to/file
          --->  comment out everything inside the `operations` list:

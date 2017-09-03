@@ -26,8 +26,8 @@ Examples:
        %prog -h                  --->  see help
        %prog -cl1,2 path/to/file  --->  comment out lines 1 and 2
        %prog -ul3-6 path/to/file  --->  uncomment lines 3 to 6 (inclusive)
-       %prog -ac path/to/file     --->  comment out all file
-       %prog -au path/to/file     --->  uncomment out all file
+       %prog -ac path/to/file     --->  comment out all lines
+       %prog -au path/to/file     --->  uncomment all lines
 
        %prog --start-pattern='\s+operations\s?=\s?\[' --end-pattern='\s+\]' path/to/file
          --->  comment out everything inside the `operations` list:
