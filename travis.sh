@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
-coverage run -m unittest && coverage html
-rm coverage.svg
-coverage-badge -o coverage.svg
+flake8 .
+coverage run -m unittest
+coverage html
+coverage-badge -fo coverage.svg
