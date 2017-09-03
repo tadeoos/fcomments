@@ -5,21 +5,43 @@ class Commenter:
     """Comment or uncomment lines in file."""
 
     def __init__(self, **kwargs):
+        self.result = ''
+        self.path = None
+        self.output = None
+        self.all_lines = False
+        self.uncomment = False
+        self.comment = False
+        self.reverse = True
+        self.in_pattern = None
+        self.out_pattern = None
+        self.lines = None
+        self.comment_symbol = '#'
         for key in kwargs:
             setattr(self, key, kwargs[key])
         with open(self.path, "r") as f:
             self.original = [l for l in f]
-        self.result = ''
         if self.all_lines:
             self.lines = [i for i in range(len(self.original) + 1)]
 
     def comment_file(self):
-        self.line_based() if self.lines else self.pattern_based()
+        if self.lines:
+            self.line_based(lines=self.lines, original=self.original, comment=self.comment)
+        else:
+            self.pattern_based()
         self.save_file()
 
-    def handle_line(self, line, comment):
+    def update(self, result=False):
+        if not result:
+            with open(self.path, "r") as f:
+                self.original = [l for l in f]
+        else:
+            print(self.result.split())
+            self.original = self.result.split()
+
+
+    def handle_line(self, line, comment, reverse=True):
         is_comment = re.match('\s*' + self.comment_symbol, line) is not None
-        if self.reverse:
+        if reverse:
             comment = False if is_comment else True
         elif not (comment or is_comment):
             return line
@@ -34,14 +56,18 @@ class Commenter:
             assert is_comment
             return line[1:]
 
-    def line_based(self):
+
+    def line_based(self, lines=None, original=None,
+                    comment=False, update=False):
         res_file = []
-        assert self.lines
-        for i, line in enumerate(self.original):
-            if i + 1 in self.lines:
-                line = self.handle_line(line, self.comment)
+        assert lines
+        for i, line in enumerate(original):
+            if i + 1 in lines:
+                line = self.handle_line(line, comment)
             res_file.append(line)
         self.result = ''.join(res_file)
+        if update:
+            pass
 
     def pattern_based(self):
         start_pattern = False
