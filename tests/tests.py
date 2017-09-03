@@ -2,7 +2,7 @@ from unittest import TestCase
 import os
 
 from fcomments.commenter import Commenter
-from fcomments import main
+
 
 def is_commented(line, comment_symbol='#'):
     if line.startswith(comment_symbol):
@@ -19,15 +19,17 @@ def file_check(path, lines, comm_state=True):
                     return False
     return True
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
 
+dir_path = os.path.dirname(os.path.realpath(__file__))
 PATH = os.path.join(dir_path, 'ex_file.py')
+
 
 class ScriptTest(TestCase):
 
     def test_manual(self):
         # main()
         pass
+
 
 class CommenterTests(TestCase):
     dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -41,7 +43,7 @@ class CommenterTests(TestCase):
 
     def test_sanity(self):
         self.assertTrue(file_check(self.path, [1]))
-        self.assertFalse(file_check(self.path, [1,3,4]))
+        self.assertFalse(file_check(self.path, [1, 3, 4]))
 
     def test_handle_line(self):
         self.line_equal('    sth()', '#    sth()', True)
@@ -56,7 +58,7 @@ class CommenterTests(TestCase):
     def test_comment_file(self):
 
         self.cmnter.reverse = True
-        self.cmnter.lines = [2,4,5]
+        self.cmnter.lines = [2, 4, 5]
         self.cmnter.comment_file()
         self.cmnter.comment_file()
 
@@ -66,16 +68,16 @@ class CommenterTests(TestCase):
         self.cmnter.out_pattern = '\s+\]'
         self.cmnter.comment_file()
 
-        self.assertFalse(file_check(self.path, [*range(13,23)]))
-        self.assertFalse(file_check(self.path, [*range(13,24)]))
-        self.assertFalse(file_check(self.path, [*range(15,25)]))
+        self.assertFalse(file_check(self.path, [*range(13, 23)]))
+        self.assertFalse(file_check(self.path, [*range(13, 24)]))
+        self.assertFalse(file_check(self.path, [*range(15, 25)]))
 
-        self.assertTrue(file_check(self.path, [*range(14,23)]))
-        self.assertTrue(file_check(self.path, [*range(18,20)]))
+        self.assertTrue(file_check(self.path, [*range(14, 23)]))
+        self.assertTrue(file_check(self.path, [*range(18, 20)]))
 
-        atrs = {'lines': [1,2,4,5], 'comment':True,
+        atrs = {'lines': [1, 2, 4, 5], 'comment': True,
                 'path': self.path, 'reverse': False}
-        self.run_command(atrs, [1,2,4,5])
+        self.run_command(atrs, [1, 2, 4, 5])
 
     def test_all_lines(self):
         atrs = {'all_lines': True, 'path': self.path,
