@@ -23,19 +23,44 @@ Default behavior is to switch the line. It means that if a matched line is comme
 
 Specifying -c flag ensures that matched lines will be commented out after the command. The flag -u works analogically with respect to uncommenting lines.
 
+### Provisioning
 
+```python
+from fcomments import Commenter
 
-### --help
+LINES = [4,5,6]
+
+c = Commenter(path='path/to/file')
+
+c.comment_file(comment=True, lines=LINES)  # ensure that lines 4-6 are commented out
+
+action()  # do sth: run tests, make migrations ..
+
+c.comment_file(uncomment=True, lines=LINES)  # ensure that lines 4-6 are not commented
 ```
-Usage: fcomments [options] <path>
+
+### CLI
+
+```shell
+# comment all lines in a file:
+$ fcomments --comment --all path/to/file
+$ fcomments -ca path/to/file
+# comment lines 3 to 12:
+$ fcomments --comment --lines=3-12 path/to/file
+$ fcomments -cl3-12 path/to/file
+```
+#### --help
+```
+Usage: __main__.py [options] <path>
 
 Examples:
-       fcomments -h                  --->  see help
-       fcomments -cl1,2 path/to/file  --->  comment out lines 1 and 2
-       fcomments -ul3-6 path/to/file  --->  uncomment lines 3 to 6 (inclusive)
-       fcomments -ac path/to/file     --->  comment out all file
+       __main__.py -h                  --->  see help
+       __main__.py -cl1,2 path/to/file  --->  comment out lines 1 and 2
+       __main__.py -ul3-6 path/to/file  --->  uncomment lines 3 to 6 (inclusive)
+       __main__.py -ac path/to/file     --->  comment out all file
+       __main__.py -au path/to/file     --->  uncomment out all file
 
-       fcomments --start-pattern='\s+operations\s?=\s?\[' --end-pattern='\s+\]' path/to/file
+       __main__.py --start-pattern='\s+operations\s?=\s?\[' --end-pattern='\s+\]' path/to/file
          --->  comment out everything inside the `operations` list:
 
          1| class Migration(...):
