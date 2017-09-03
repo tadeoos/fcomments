@@ -1,3 +1,5 @@
+![coverage](coverage.svg)
+
 # fcomments
 
 *manage comments from your command line*

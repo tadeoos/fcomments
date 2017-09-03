@@ -4,12 +4,11 @@ from optparse import OptionParser
 
 from .commenter import Commenter
 
-__version__ = '0.1'
+__version__ = '0.1.1'
 
 log = logging.getLogger(__name__)
 
-def main(reverse=False):
-    """Script for commenting in/out lines in file."""
+def create_parser():
     def line_callback(option, opt, value, parser):
         if '-' in value:
             lin = [int(i) for i in value.split('-')]
@@ -67,9 +66,14 @@ If you don't specify an --output, the original file (<path>) will be overwritten
     parser.add_option("--symbol", action="store", type="string",
                       dest="comment_symbol", default='#',
                       help="specify a string to use as comment [default: '#']")
+    return parser
 
+def main(reverse=False):
+    """Script for commenting in/out lines in file."""
+
+    parser = create_parser()
     options, args = parser.parse_args()
-
+    print(options.__dict__)
     if len(args) != 1:
         parser.error("specify a path to file")
     if options.comment and options.uncomment:
