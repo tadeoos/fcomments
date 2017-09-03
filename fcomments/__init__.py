@@ -26,7 +26,8 @@ Examples:
        %prog -h                  --->  see help
        %prog -cl1,2 path/to/file  --->  comment out lines 1 and 2
        %prog -ul3-6 path/to/file  --->  uncomment lines 3 to 6 (inclusive)
-       %prog -ac path/to/file     --->  comment out all file
+       %prog -ac path/to/file     --->  comment out all lines
+       %prog -au path/to/file     --->  uncomment all lines
 
        %prog --start-pattern='\s+operations\s?=\s?\[' --end-pattern='\s+\]' path/to/file
          --->  comment out everything inside the `operations` list:
@@ -70,21 +71,18 @@ If you don't specify an --output, the original file (<path>) will be overwritten
     return parser
 
 
-def main(reverse=False):
+def main():
     """Script for commenting in/out lines in file."""
     parser = create_parser()
     options, args = parser.parse_args()
-    print(options.__dict__)
     if len(args) != 1:
         parser.error("specify a path to file")
     if options.comment and options.uncomment:
         parser.error('cannot run with both -c and -u set to True')
     if not (options.in_pattern or options.out_pattern or options.lines or options.all_lines):
         parser.error('specify patterns or lines; see --help')
-    if not (options.comment or options.uncomment):
-        reverse = True
     try:
-        commenter = Commenter(path=args[0], reverse=reverse, **options.__dict__)
-        commenter.comment_file()
+        commenter = Commenter(path=args[0])
+        commenter.comment_file(**options.__dict__)
     except Exception as e:
         parser.error(e)
