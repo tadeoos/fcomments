@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/tadeoos/fcomments.svg?branch=master)](https://travis-ci.org/tadeoos/fcomments)
 ![coverage](coverage.svg)
+[![PyPI version](https://badge.fury.io/py/fcomments.svg)](https://badge.fury.io/py/fcomments)
 
 # fcomments
 
